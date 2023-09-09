@@ -10,25 +10,7 @@ const getWidth = () => {
     );
 };
 
-if (doParticles) {
-    if (getWidth() < 400) $.firefly({
-        minPixel: 1,
-        maxPixel: 2,
-        total: 20
-    });
-    else $.firefly({
-        minPixel: 1,
-        maxPixel: 3,
-        total: 40
-    });
-}
-
-let t;
-$(document).ready(() => {
-    t = $(".ip").html();
-});
-
-$(document).on("click", ".ip", () => {
+const handleCopyIP = () => {
     let copy = document.createElement("textarea");
     copy.style.position = "absolute";
     copy.style.left = "-99999px";
@@ -44,7 +26,37 @@ $(document).on("click", ".ip", () => {
         var copy = document.getElementById("ta");
         copy.parentNode.removeChild(copy);
     }, 800);
+};
+
+const updatePlayercount = (ip, port) => {
+    $.get(`https://api.bybilly.uk/api/players/${ip}/${port}`, (result) => {
+        if (result.hasOwnProperty('online')) {
+            $(".sip").html(result.online);
+        } else {
+            $(".playercount").html("El servidor no está disponible!");
+        }
+    });
+};
+
+if (doParticles) {
+    const particleSettings = getWidth() < 400 ? {
+        minPixel: 1,
+        maxPixel: 2,
+        total: 20
+    } : {
+        minPixel: 1,
+        maxPixel: 3,
+        total: 40
+    };
+    $.firefly(particleSettings);
+}
+
+let t;
+$(document).ready(() => {
+    t = $(".ip").html();
 });
+
+$(document).on("click", ".ip", handleCopyIP);
 
 $(document).ready(() => {
     let ip = $(".sip").attr("data-ip");
@@ -57,13 +69,3 @@ $(document).ready(() => {
         updatePlayercount(ip, port);
     }, 60000);
 });
-
-const updatePlayercount = (ip, port) => {
-    $.get(`https://api.bybilly.uk/api/players/${ip}/${port}`, (result) => {
-        if (result.hasOwnProperty('online')) {
-            $(".sip").html(result.online);
-        } else {
-            $(".playercount").html("El servidor no está disponible!");
-        }
-    });
-};
