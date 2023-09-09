@@ -44,7 +44,7 @@ $(document).ready(() => {
     let port = $(".sip").attr("data-port") || "25565";
 
     if (!ip) {
-        console.error("Error al obtener el recuento de jugadores");
+        console.error("Error al obtener el recuento de jugadores: ¿la IP está configurada correctamente en el HTML?");
     } else {
         updatePlayercount(ip, port);
 
