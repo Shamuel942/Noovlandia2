@@ -20,6 +20,7 @@ const handleCopyIP = () => {
     copy.textContent = t;
     copy.select();
     document.execCommand("copy");
+
     $(".ip").html("<span class='extrapad'>IP copiada!</span>");
     setTimeout(() => {
         $(".ip").html(t);
@@ -37,6 +38,21 @@ const updatePlayercount = (ip, port) => {
         }
     });
 };
+
+$(document).ready(() => {
+    const ip = $(".sip").attr("data-ip");
+    let port = $(".sip").attr("data-port") || "25565";
+
+    if (!ip) {
+        console.error("Error al obtener el recuento de jugadores");
+    } else {
+        updatePlayercount(ip, port);
+
+        setInterval(() => {
+            updatePlayercount(ip, port);
+        }, 60000);
+    }
+});
 
 if (doParticles) {
     const particleSettings = getWidth() < 400 ? {
@@ -57,16 +73,3 @@ $(document).ready(() => {
 });
 
 $(document).on("click", ".ip", handleCopyIP);
-
-$(document).ready(() => {
-    const ip = $(".sip").attr("data-ip");
-    let port = $(".sip").attr("data-port") || "25565";
-    if (!ip) {
-        console.error("Error al obtener el recuento de jugadores");
-    } else {
-        updatePlayercount(ip, port);
-        setInterval(() => {
-            updatePlayercount(ip, port);
-        }, 60000);
-    }
-});
