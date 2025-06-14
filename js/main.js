@@ -1,71 +1,74 @@
-const doParticles = true;
+// If set to true, the playercount banner will display the serverOfflineText (ie "Server isn't online!")
+// If set to false, the playercount banner will hide the playercount (ie "Join other players on <IP>")
+const tellUsersWhenServerIsOffline = true;
 
-const getWidth = () => {
-    return Math.max(
-        document.body.scrollWidth,
-        document.documentElement.scrollWidth,
-        document.body.offsetWidth,
-        document.documentElement.offsetWidth,
-        document.documentElement.clientWidth
-    );
-};
+// If tellUsersWhenServerIsOffline is set to true, what text should be displayed?
+const serverOfflineText = "El servidor no esta activo!";
 
-const handleCopyIP = () => {
-    let copy = document.createElement("textarea");
-    copy.style.position = "absolute";
-    copy.style.left = "-99999px";
-    copy.style.top = "0";
-    copy.setAttribute("id", "ta");
-    document.body.appendChild(copy);
-    copy.textContent = t;
-    copy.select();
+// When a user clicks on your server IP, what should it display briefly after the IP has been copied?
+const ipCopiedText = "IP copiada!";
+
+// This is for the click to copy
+const ipSpanElement = document.getElementById('ip');
+const originalIPText = ipSpanElement.innerHTML;
+
+ipSpanElement.addEventListener("click", () => {
+    // Create a temporary textarea to copy the IP
+    let tempTextarea = document.createElement("textarea");
+    tempTextarea.style.position = "absolute";
+    tempTextarea.style.left = "-99999px";
+    tempTextarea.style.top = "0";
+    document.body.appendChild(tempTextarea);
+    tempTextarea.textContent = originalIPText;
+    tempTextarea.select();
     document.execCommand("copy");
-    $(".ip").html("<span class='extrapad'>IP copiada!</span>");
+    document.body.removeChild(tempTextarea);
+
+    // Temporarily display the IP copied text
+    ipSpanElement.innerHTML = `<span class='extrapad'>${ipCopiedText}</span>`;
     setTimeout(() => {
-        $(".ip").html(t);
-        var copy = document.getElementById("ta");
-        copy.parentNode.removeChild(copy);
+        ipSpanElement.innerHTML = originalIPText;
     }, 800);
+});
+
+// This is to fetch the player count
+const playercountBannerElement = document.getElementById('playercount');
+const playercountSpanElement = document.getElementById('sip');
+
+const initialisePlayercountFetcher = () => {
+    const ip = playercountSpanElement.getAttribute("data-ip");
+    const port = playercountSpanElement.getAttribute("data-port") || "25565";
+
+    if (ip == "" || ip == null) return console.error("Error fetching player count - is the IP set correctly in the HTML?");
+    
+    updatePlayercount(ip, port);
+
+    // Update player count every minute (not worth changing due to API cache)
+    setInterval(() => updatePlayercount(ip, port), 60000);
 };
 
 const updatePlayercount = (ip, port) => {
-    $.get(`https://api.bybilly.uk/api/players/${ip}/${port}`, (result) => {
-        if (result.hasOwnProperty('online')) {
-            $(".sip").html(result.online);
+    fetch(`https://api.bybilly.uk/api/players/${ip}/${port}`)
+    .then(res => res.json())
+    .then(data => {
+        if (data.hasOwnProperty('online')) {
+            // Update player count
+            playercountSpanElement.innerHTML = data.online;
+            playercountSpanElement.style.display = 'inline';
         } else {
-            $(".playercount").html("El servidor no está disponible!");
+            // Server is offline - change banner to server offline text or hide player count (see line 6)
+            if (tellUsersWhenServerIsOffline) {
+                playercountBannerElement.innerHTML = serverOfflineText;
+            } else {
+                playercountSpanElement.style.display = 'none';
+            }
         }
+    })
+    .catch(err => {
+        // Hide player count on error
+        console.error(`Error fetching playercount: ${err}`);
+        playercountSpanElement.style.display = 'none';
     });
 };
 
-if (doParticles) {
-    const particleSettings = getWidth() < 400 ? {
-        minPixel: 1,
-        maxPixel: 2,
-        total: 20
-    } : {
-        minPixel: 1,
-        maxPixel: 3,
-        total: 40
-    };
-    $.firefly(particleSettings);
-}
-
-let t;
-$(document).ready(() => {
-    t = $(".ip").html();
-});
-
-$(document).on("click", ".ip", handleCopyIP);
-
-$(document).ready(() => {
-    let ip = $(".sip").attr("data-ip");
-    let port = $(".sip").attr("data-port");
-    if (port == "" || port == null) port = "25565";
-    if (ip == "" || ip == null) return console.error("Error al obtener el recuento de jugadores: ¿la IP está configurada correctamente en el HTML?");
-    updatePlayercount(ip, port);
-
-    setInterval(() => {
-        updatePlayercount(ip, port);
-    }, 60000);
-});
+initialisePlayercountFetcher();
