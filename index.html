@@ -1,68 +1,86 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Servidor de Minecraft semipremium para Java y Bedrock desde la versión 1.10 hasta la 1.21">
-    <meta name="keywords" content="Noovlandia, Noovlandia Network">
-    <meta property="og:title" content="Noovlandia">
-    <meta property="og:site_name" content="Noovlandia Network">
-    <meta property="og:url" content="https://noovlandia.fun">
-    <meta property="og:description" content="Un servidor semipremium para Java y Bedrock desde la versión 1.10 hasta la 1.21">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap">
-    <link rel="stylesheet" href="css/stylesheet.css">
-    <link rel="stylesheet" href="fontawesome/css/all.min.css">
-    <link rel="icon" href="img/logo.png">
-    <title>Noovlandia Network</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Servidor de Minecraft semipremium para Java y Bedrock desde la versión 1.10 hasta la 1.21">
+  <meta name="keywords" content="Noovlandia, Noovlandia Network, Minecraft, Servidor, Bedrock, Java">
+  <meta name="author" content="Shamuel942">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#6366f1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Noovlandia">
+  <meta property="og:description" content="Servidor de Minecraft semipremium desde la 1.10 hasta la 1.21">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Noovlandia Network">
+  <meta property="og:url" content="https://noovlandia.fun">
+  <meta property="og:image" content="https://noovlandia.fun/img/logo.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Logo de Noovlandia">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:locale" content="es_ES">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Noovlandia">
+  <meta name="twitter:description" content="Servidor de Minecraft semipremium para Java y Bedrock desde la 1.10 hasta la 1.21">
+  <meta name="twitter:image" content="https://noovlandia.fun/img/logo.png">
+
+  <!-- Recursos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap">
+
+  <!-- Preload (mejora de rendimiento) -->
+  <link rel="preload" href="./css/stylesheet.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="./css/stylesheet.css"></noscript>
+
+
+  <link rel="stylesheet" href="./css/stylesheet.css">
+  <link rel="icon" href="./img/logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="./img/logo.png">
+
+  <title>Noovlandia Network - Servidor Minecraft Java & Bedrock</title>
 </head>
 <body>
     <div class="container">
         <div class="snow">
             <div class="logo">
-                <img src="img/logo.png">
+                <img src="./img/logo.png" alt="Logo de Noovlandia">
             </div>
 
-            <div class="playercount">
-                <p>Juega con <span class="sip" data-ip="mc.noovlandia.fun" data-port="25565"></span> jugadores en <span class="ip">Noovlandia Network</span></p>
-            </div>
-            <hr>
-
-            <div class="items">
-                <a href="https://noovlandia-network.gitbook.io" class="item wiki">
-                    <i class="fa fa-book-open fa-4x" alt="Wiki icon" style="color:#ffffff"></i>
-                    <p class="title">Wiki</p>
-                </a>
-
-                <a href="https://noovlandia.tebex.io" class="item store">
-                    <i class="fa fa-shopping-cart fa-4x" alt="Store icon" style="color:#ffffff"></i>
-                    <p class="title">Tienda</p>
-                </a>
-
-                <a href="https://discord.gg/8QujueGCa8" class="item forums">
-                    <i class="fab fa-discord fa-4x" alt="Discord icon" style="color:#ffffff"></i>
-                    <p class="title">Discord</p>
-                </a>
-            </div>
-            <br><br>
-            <p class="subtitle">Nuestras redes sociales</p><br>
-            <div class="social">
-                <a href="https://instagram.com/noovlandia" class="item forums">
-                    <i class="fab fa-instagram" style="color:#ffffff"></i>
-                </a>
-                <a href="https://twitter.com/noovlandia" class="item forums">
-                    <i class="fab fa-twitter" style="color:#ffffff"></i>
-                </a>
-                <a href="https://tiktok.com/@noovlandia" class="item forums">
-                    <i class="fab fa-tiktok" style="color:#ffffff"></i>
-                </a>
+            <div class="playercount" id="playercount">
+            <p>Juega con <span id="sip" data-ip="mc.noovlandia.fun" data-port="25565" style="display: inline;"></span> jugadores en <span id="ip">mc.noovlandia.fun</span></p>
             </div>
         </div>
+            <hr>
+            <div class="items">
+				<a href="https://noovlandia-network.gitbook.io" class="item wiki">
+					<i class="fa fa-book-open fa-4x" style="color:#ffffff"></i>
+					<div><p class="title">Wiki</p></div>
+				</a>
+				<a href="https://noovlandia.tebex.io" class="item store">
+					<i class="fa fa-shopping-cart fa-4x" style="color:#ffffff"></i>
+					<div><p class="title">Tienda</p></div>
+				</a>
+				<a href="https://discord.gg/8QujueGCa8" class="item forums">
+					<i class="fab fa-discord fa-4x" style="color:#ffffff"></i>
+					<div><p class="title">Discord</p></div>
+				</a>
+			</div>
+			<p class="subtitle">Nuestras redes sociales!</p>
+			<div class="social">
+				<a href="https://instagram.com/noovlandia" class="item forums"><i class="fab fa-instagram" title="Instagram" style="color:#ffffff"></i></a>
+				<a href="https://twitter.com/noovlandia" class="item forums"><i class="fab fa-twitter" title="Twitter" style="color:#ffffff"></i></a>
+				<a href="https://tiktok.com/@noovlandia" class="item forums"><i class="fab fa-tiktok" title="Tiktok" style="color:#ffffff"></i></a>
+			</div>
     </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="js/firefly.js" defer></script>
-    <script src="js/main.js" defer></script>
+    <div class="marca-shamuel" lang="es">Hecho por: Shamuel942</div>
+    <script src="./js/bloqueador.js"></script>
+    <script src="./js/main.js" defer></script>
 </body>
 </html>
