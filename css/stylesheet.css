@@ -243,15 +243,3 @@ p {
 		margin-left: 90px;
 	}
 }
-
-.marca-shamuel {
-  position: fixed;
-  bottom: 10px;
-  left: 10px;
-  font-size: 13px;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.3);
-  z-index: 999;
-  pointer-events: none;
-  user-select: none;
-}
