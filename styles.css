@@ -4,7 +4,7 @@
 
 body {
   background: linear-gradient(rgba(20, 26, 35, 0.55), rgba(20, 26, 35, 0.55)),
-    url("https://cdn.glitch.global/f4edc24b-3ce3-460f-ac50-4fe7548a7bd2/Background?v=1693196726238") no-repeat center center;
+    url("https://cdn.glitch.global/f4edc24b-3ce3-460f-ac50-4fe7548a7bd2/Background?v=1693196726238") no-repeat center center fixed;
   background-size: cover;
   font-family: "Open Sans", Helvetica, sans-serif;
   margin: 0;
@@ -50,11 +50,9 @@ body {
 }
 
 .server-name {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   margin: 30px auto 40px auto;
   font-size: 1.6rem;
+  white-space: nowrap;
   text-align: center;
   font-weight: 600;
   text-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
@@ -117,7 +115,6 @@ hr {
 }
 
 .item i {
-  font-size: 1.4rem;
   transition: transform 0.25s ease;
   filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.3));
 }
@@ -163,21 +160,19 @@ hr {
     max-width: 95vw;
     padding: 30px 20px;
   }
-  
+
   .items {
     gap: 18px;
     flex-wrap: wrap;
-    justify-content: center;
   }
 
   .item {
     flex: 1 1 30%;
-    font-size:1rem;
-    max-width: 90px;
+    max-width: none;
   }
 
   .title {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 
   .subtitle {
