@@ -50,9 +50,11 @@ body {
 }
 
 .server-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   margin: 30px auto 40px auto;
   font-size: 1.6rem;
-  white-space: nowrap;
   text-align: center;
   font-weight: 600;
   text-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
@@ -115,6 +117,7 @@ hr {
 }
 
 .item i {
+  font-size: 1.4rem;
   transition: transform 0.25s ease;
   filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.3));
 }
@@ -160,19 +163,21 @@ hr {
     max-width: 95vw;
     padding: 30px 20px;
   }
-
+  
   .items {
     gap: 18px;
     flex-wrap: wrap;
+    justify-content: center;
   }
 
   .item {
     flex: 1 1 30%;
-    max-width: none;
+    font-size:1rem;
+    max-width: 90px;
   }
 
   .title {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   .subtitle {
