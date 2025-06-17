@@ -35,5 +35,5 @@ Puedes ver el sitio en línea gracias a **GitHub Pages**:
 
 ## 📁 Desarolladores
 
-- **➡️ [Shamuel942 (Ex-Admin de la network)](https://github.com/Shamuel942)**
 - **➡️ [Santysx (Dueño y fundador de la network)](https://github.com/Santysx)**
+- **➡️ [Shamuel942 (Ex-Admin de la network)](https://github.com/Shamuel942)**
