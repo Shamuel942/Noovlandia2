@@ -3,9 +3,6 @@
 }
 
 body {
-  background: linear-gradient(rgba(20, 26, 35, 0.55), rgba(20, 26, 35, 0.55)),
-    url("https://cdn.glitch.global/f4edc24b-3ce3-460f-ac50-4fe7548a7bd2/Background?v=1693196726238") no-repeat center center fixed;
-  background-size: cover;
   font-family: "Open Sans", Helvetica, sans-serif;
   margin: 0;
   color: white;
@@ -14,6 +11,29 @@ body {
   justify-content: center;
   align-items: center;
   padding: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.gradient {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(rgba(20, 26, 35, 0.55), rgba(20, 26, 35, 0.55));
+  z-index: -1;
 }
 
 .container {
@@ -50,8 +70,7 @@ body {
 }
 
 .server-name {
-  margin: 30px auto 40px auto;
-  font-size: 1.6rem;
+  font-size: 1.7rem;
   text-align: center;
   font-weight: 600;
   text-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
@@ -65,22 +84,22 @@ body {
   -ms-user-select: none;
   transition: color 0.3s ease;
   display: inline-block;
-  padding: 6px 12px;
-  border-radius: 8px;
+  position: center;
+  padding: 5px 20px;
+  border-radius: 40px;
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+  width: fit-content;
   background: #555;
-  box-shadow: 0 0 8px rgba(115, 115, 115, 0.7);
+  background-position: center;
+  box-shadow: 0 0 10px rgba(115, 115, 115, 0.7);
   font-weight: 700;
 }
 
 .ip:hover {
   color: #6366f1;
   box-shadow: 0 0 12px #6366f1;
-}
-
-.extrapad {
-  padding: 6px 12px;
-  font-weight: 700;
-  color: #63f;
 }
 
 hr {

@@ -5,9 +5,6 @@ const originalIPText = ipSpanElement.innerHTML;
 ipSpanElement.addEventListener("click", () => {
 
     const tempTextarea = document.createElement("textarea");
-    tempTextarea.style.position = "absolute";
-    tempTextarea.style.left = "-99999px";
-    tempTextarea.style.top = "0";
     tempTextarea.textContent = originalIPText;
 
     document.body.appendChild(tempTextarea);
