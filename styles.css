@@ -4,7 +4,7 @@
 
 body {
   background: linear-gradient(rgba(20, 26, 35, 0.55), rgba(20, 26, 35, 0.55)),
-    url("https://cdn.glitch.global/f4edc24b-3ce3-460f-ac50-4fe7548a7bd2/Background?v=1693196726238") no-repeat center center fixed;
+    url("https://cdn.glitch.global/f4edc24b-3ce3-460f-ac50-4fe7548a7bd2/Background?v=1693196726238") no-repeat center center;
   background-size: cover;
   font-family: "Open Sans", Helvetica, sans-serif;
   margin: 0;
